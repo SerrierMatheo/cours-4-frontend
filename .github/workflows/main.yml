@@ -64,6 +64,11 @@ jobs:
       - name: Build for Production
         run: npm run build
 
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -113,7 +118,8 @@ jobs:
           name: dist
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+
+      - name: Display deployement URL
+        run: echo ${{ steps.deployment.outputs.page_url }}
