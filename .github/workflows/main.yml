@@ -64,6 +64,12 @@ jobs:
       - name: Build for Production
         run: npm run build
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./dist
+          name: dist
+
   cypress:
     name: Cypress
     needs: build
@@ -81,16 +87,16 @@ jobs:
         run: npm ci
 
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
+          path: ./dist
           name: dist
 
       - name: Run End-to-End Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
-          start: npm start
-          wait-on: 'http://localhost:3000'
-          spec: 'cypress/integration/**/*.spec.js'
+          start: npm run preview
+          wait-on: 'http://localhost:4173'
 
   deploy:
     name: Deploy to GitHub Pages
