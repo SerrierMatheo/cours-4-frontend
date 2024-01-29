@@ -64,8 +64,8 @@ jobs:
       - name: Build for Production
         run: npm run build
 
-  e2e-test:
-    name: End-to-End Tests
+  Cypress:
+    name: Cypress
     needs: build
     runs-on: ubuntu-latest
     steps:
