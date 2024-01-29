@@ -19,8 +19,8 @@ describe('Counter Store', () => {
 
   it('decrements', () => {
     const counter = useCounterStore()
-    expect(counter.count).toBe(1)
-    counter.decrement()
     expect(counter.count).toBe(0)
+    counter.decrement()
+    expect(counter.count).toBe(-1)
   })
 })
