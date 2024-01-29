@@ -64,7 +64,7 @@ jobs:
       - name: Build for Production
         run: npm run build
 
-  Cypress:
+  cypress:
     name: Cypress
     needs: build
     runs-on: ubuntu-latest
@@ -94,7 +94,7 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: e2e-test
+    needs: cypress
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
